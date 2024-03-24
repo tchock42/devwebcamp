@@ -1,0 +1,141 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.boletos{
+    &__grid{
+        @include m.contenedor-sm;
+        @include m.grid(1, 5rem);
+    }
+    
+}
+
+.boleto{
+    width: min(100% - 5rem, 65rem ); //100%-5rem, maximo 65rem
+    margin: 0 auto;
+    padding: 6rem; //espacio de las muescas
+    border-radius: 2rem;
+    color: v.$blanco;
+    position: relative;
+
+    &::before, &::after{ //para compartidos. before->izq. after->derecho
+        position: absolute;
+        content: '';
+        background-color: v.$blanco;
+        width: 5rem;
+        height: 5rem;
+        top: calc(50% - 2.5rem); //desde arriba se recorre 50% para abajo menos radio del circulo
+        
+    }
+
+    &::before{
+        clip-path: circle(50% at 15% 50%); //mitad de longitud at 15% del elemento horizontalmente desdela izq at 50$ verticalmente desde abajo
+        left: 0;
+    }
+    &::after{
+        clip-path: circle(50% at 85% 50%); //mitad de longitud at 50% del elemento horizontalmente at 50$ verticalmente desde abajo
+        right: 0;
+    }
+
+    &--presencial{
+        background-color:hsla(178,100%,39%,1);
+        background-image:
+        radial-gradient(at 21% 48%, hsla(209,100%,47%,1) 0px, transparent 50%),
+        radial-gradient(at 77% 11%, hsla(178,100%,39%,1) 0px, transparent 50%),
+        radial-gradient(at 69% 61%, hsla(209,100%,47%,1) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, hsla(178,100%,39%,1) 0px, transparent 50%),
+        radial-gradient(at 88% 26%, hsla(209,100%,47%,1) 0px, transparent 50%),
+        radial-gradient(at 11% 11%, hsla(178,100%,39%,1) 0px, transparent 50%);
+    }
+    &--virtual{
+        background-color: v.$secundario;
+    }
+    &--gratis{
+        background-color: v.$azul;
+    }
+    &__logo{
+        @include m.logo;
+        @include m.texto-fluido(2rem, 4rem);
+    }
+    &__plan{
+        font-size: 2rem;
+        text-transform: uppercase;
+        margin: 3rem 0 0 0;
+    }
+    &__precio{
+        margin: 3rem 0 0 0;
+        font-weight: v.$black;
+        font-size: 4rem;
+    }
+    &__enlace-contenedor{
+        margin-top: 5rem;
+        display: flex;
+        justify-content: center;
+    }
+    &__enlace{
+        @include m.boton(v.$azul, v.$blanco);
+        width: auto;
+    }
+    $modificador: &; //crea una variable & que hace referencia a .boleto
+    &--acceso{ //boleto--acceso para boleto vertical
+        width: 30rem;
+        height: 50rem;
+        padding: 10rem 3rem;
+        @include m.tablet {
+            width: 60rem;
+            height: 30rem;   
+            padding: 6rem; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center //alinea verticalmente
+        }
+
+        #{$modificador}__logo{ //crea .boleto--acceso .boleto__logo{ para modificar el boleto__logo cuadno esté boleto--acceso
+            @include m.texto-fluido(2rem, 3rem);
+            margin: 0;
+            text-align: left;
+        }
+        #{$modificador}__nombre{ //crea .boleto--acceso .boleto__codigo{ para modificar el boleto__codigo cuadno esté boleto--acces
+            font-size: 2.4rem;
+            text-transform: uppercase;
+            font-weight: v.$black;
+        }
+        #{$modificador}__codigo{ //crea .boleto--acceso .boleto__logo{ para modificar el boleto__logo cuadno esté boleto--acceso
+            font-size: 4rem;
+            font-weight: v.$bold;
+            text-align: center;
+            position: absolute; //saca del flujo de posicion
+            bottom: 8rem; //sube 8rem desde abajo
+            margin: 0;
+            left: 0; //0 desde la izq.
+            width: 100%; //abarca el total del contenedor para centrarlo
+
+            @include m.tablet {
+                transform: rotate(90deg);
+                transform-origin: 0 0;
+                top: 0;
+                left: calc(100% - 5rem);
+                width: 30rem;
+            }
+        }
+    }
+    &::before{ //agrega el circulo izquierdo arriba
+        clip-path: circle(50% at 50% 25%);
+        left: calc(50% - 2.5rem);
+        top: 0;
+        @include m.tablet {
+            clip-path: circle(50% at 15% 50%); //mitad de longitud at 15% del elemento horizontalmente desdela izq at 50$ verticalmente desde abajo
+            left: 0;
+            top: calc(50% - 2.5rem);
+        }
+    }
+    &::after{ //agrega el circulo derecho, abajo
+        clip-path: circle(50% at 50% 75%);
+        left: calc(50% - 2.5rem);
+        top: calc(100% - 5rem);
+        @include m.tablet {
+            clip-path: circle(50% at 85% 50%); //mitad de longitud at 50% del elemento horizontalmente at 50$ verticalmente desde abajo
+            left: calc(100% - 5rem);
+            top: calc(50% - 2.5rem);
+        }
+    }
+}

@@ -1,0 +1,13 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.menu-redes{
+    @include m.menu-social(v.$blanco, 2rem); //agrega los iconos de redes sociales
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 4rem;
+    @include m.tablet {
+        justify-content: flex-end;
+    }
+}

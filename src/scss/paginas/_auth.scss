@@ -1,0 +1,10 @@
+@use 'base/mixins' as m; //importa los mixins
+
+.auth{
+    @include m.contenedor-sm;
+}
+
+.auth__texto{
+    font-size: 2rem; 
+    text-align: center;
+}
