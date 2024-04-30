@@ -3,6 +3,9 @@
 namespace Classes;
 
 use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\Exception;
+
+require __DIR__ . '/../vendor/autoload.php';
 
 class Email {
 
@@ -19,33 +22,32 @@ class Email {
 
     public function enviarConfirmacion() {
 
-         // create a new object
-         $mail = new PHPMailer();
-         $mail->isSMTP();
-         $mail->Host = $_ENV['EMAIL_HOST'];
-         $mail->SMTPAuth = true;
-         $mail->Port = $_ENV['EMAIL_PORT'];
-         $mail->Username = $_ENV['EMAIL_USER'];
-         $mail->Password = $_ENV['EMAIL_PASS'];
-     
-         $mail->setFrom('cuentas@devwebcamp.com');
-         $mail->addAddress($this->email, $this->nombre);
-         $mail->Subject = 'Confirma tu Cuenta';
+        // create a new object
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = $_ENV['EMAIL_HOST'];
+        $mail->SMTPAuth = true;
+        $mail->Username = $_ENV['EMAIL_USER'];
+        $mail->Password = $_ENV['EMAIL_PASS'];
+        $mail->Port = $_ENV['EMAIL_PORT'];
+    
+        $mail->setFrom('cuentas@devwebcamp.com');
+        $mail->addAddress($this->email, $this->nombre);
+        $mail->Subject = 'Confirma tu Cuenta';
 
-         // Set HTML
-         $mail->isHTML(TRUE);
-         $mail->CharSet = 'UTF-8';
+        // Set HTML
+        $mail->isHTML(true);
+        $mail->CharSet = 'UTF-8';
 
-         $contenido = '<html>';
-         $contenido .= "<p><strong>Hola " . $this->nombre .  "</strong> Has Registrado Correctamente tu cuenta en DevWebCamp; pero es necesario confirmarla</p>";
-         $contenido .= "<p>Presiona aquí: <a href='" . $_ENV['APP_URL'] . "/confirmar-cuenta?token=" . $this->token . "'>Confirmar Cuenta</a>";       
-         $contenido .= "<p>Si tu no creaste esta cuenta; puedes ignorar el mensaje</p>";
-         $contenido .= '</html>';
-         $mail->Body = $contenido;
+        $contenido = '<html>';
+        $contenido .= "<p><strong>Hola " . $this->nombre .  "</strong> Has Registrado Correctamente tu cuenta en DevWebCamp; pero es necesario confirmarla</p>";
+        $contenido .= "<p>Presiona aquí: <a href='" . $_ENV['APP_URL'] . "/confirmar-cuenta?token=" . $this->token . "'>Confirmar Cuenta</a>";       
+        $contenido .= "<p>Si tu no creaste esta cuenta; puedes ignorar el mensaje</p>";
+        $contenido .= '</html>';
+        $mail->Body = $contenido;
 
-         //Enviar el mail
-         $mail->send();
-
+        //Enviar el mail
+        $mail->send();
     }
 
     public function enviarInstrucciones() {
@@ -55,9 +57,9 @@ class Email {
         $mail->isSMTP();
         $mail->Host = $_ENV['EMAIL_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Port = $_ENV['EMAIL_PORT'];
         $mail->Username = $_ENV['EMAIL_USER'];
         $mail->Password = $_ENV['EMAIL_PASS'];
+        $mail->Port = $_ENV['EMAIL_PORT'];
     
         $mail->setFrom('cuentas@devwebcamp.com');
         $mail->addAddress($this->email, $this->nombre);
@@ -76,5 +78,6 @@ class Email {
 
         //Enviar el mail
         $mail->send();
+
     }
 }

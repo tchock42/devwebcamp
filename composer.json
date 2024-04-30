@@ -18,6 +18,7 @@
     "require": {
         "phpmailer/phpmailer": "^6.5",
         "vlucas/phpdotenv": "^5.4",
-        "intervention/image": "^2.7"
+        "intervention/image": "^2.7",
+        "getbrevo/brevo-php": "2.0.0"
     }
 }
