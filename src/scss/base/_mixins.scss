@@ -48,7 +48,7 @@
 }
 @mixin contenedor{
     // max-width: 120rem; //toma como ancho maximo 1200px
-    // width: 95; //si no alcanza 120rem, toma el 95% del ancho de la pantalla
+    // width: 95%; //si no alcanza 120rem, toma el 95% del ancho de la pantalla
     width: min(95%, 140rem); //esta funcion engloba lo anterior
     margin: 0 auto; //centrar el contenedor
 }
@@ -97,14 +97,13 @@
     }
 }
 @mixin menu-social($color, $size){
-    
     &__enlace{
         &::before{
             color: $color;
             font-size: $size;
             display: inline-block;
             font-style: normal; //iconos, no muy anchos
-            text-rendering: auto; //propiedad de vectores, 
+            text-rendering: auto; //propiedad de vectores,
             -webkit-font-smoothing: antialiased;  //aplica antialising para vectores
             font-family: "Font Awesome 6 Brands"; //aplica la familia importada en el layout
         }
