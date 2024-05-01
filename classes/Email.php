@@ -48,11 +48,7 @@ class Email {
             $mail->Body = $contenido;
 
             //Enviar el mail
-            if($mail->send()) {
-                echo 'El correo ha sido enviado correctamente.';
-            } else {
-                echo 'Hubo un error al enviar el correo.';
-            }
+            $mail->send();
         } catch (Exception $e) {
             echo "Hubo un error al enviar el correo: {$mail->ErrorInfo}";
         }
@@ -87,11 +83,7 @@ class Email {
             $mail->Body = $contenido;
 
             //Enviar el mail
-            if($mail->send()) {
-                echo 'El correo ha sido enviado correctamente.';
-            } else {
-                echo 'Hubo un error al enviar el correo.';
-            }
+            $mail->send();
         } catch (Exception $e) {
             echo "Hubo un error al enviar el correo: {$mail->ErrorInfo}";
         }

@@ -101,9 +101,9 @@ class AuthController {
                     $email->enviarConfirmacion();
                     
                     
-                    // if($resultado) {
-                    //     header('Location: /mensaje');
-                    // }
+                    if($resultado) {
+                        header('Location: /mensaje');
+                    }
                 }
             }
         }
