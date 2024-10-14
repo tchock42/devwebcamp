@@ -32,7 +32,7 @@ class Email {
             $mail->Password = $_ENV['EMAIL_PASS'];
             $mail->Port = $_ENV['EMAIL_PORT'];
         
-            $mail->setFrom('cuentas@devwebcamp.com');
+            $mail->setFrom('jacob.goca@outlook.com');
             $mail->addAddress($this->email, $this->nombre);
             $mail->Subject = 'Confirma tu Cuenta';
 
@@ -67,7 +67,7 @@ class Email {
             $mail->Password = $_ENV['EMAIL_PASS'];
             $mail->Port = $_ENV['EMAIL_PORT'];
         
-            $mail->setFrom('cuentas@devwebcamp.com');
+            $mail->setFrom('jacob.goca@outlook.com');
             $mail->addAddress($this->email, $this->nombre);
             $mail->Subject = 'Reestablece tu password';
 

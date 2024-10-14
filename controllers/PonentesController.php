@@ -42,9 +42,7 @@ class PonentesController{
         if(!is_admin()){ //revisa si es admin
             header('Location: /login');
         } 
-        if(!is_admin()){ //revisa si es admin
-            header('Location: /login');
-        }
+
         $alertas=[];
         $ponente = new Ponente;
 

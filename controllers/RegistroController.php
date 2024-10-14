@@ -137,7 +137,7 @@ class RegistroController{
     //seleccion de conferencias y registro de pago
     public static function conferencias(Router $router){
         
-        //Validar que esté sesion abierta
+        //Validar que esté sesion abierta 
         if(!is_auth()){
             header('Location: /login');
             return;
